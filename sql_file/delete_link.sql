@@ -1,0 +1,1 @@
+delete from picture_ where picture_id = '@@linkId@@';

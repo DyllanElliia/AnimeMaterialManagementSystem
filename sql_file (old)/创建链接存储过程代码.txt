@@ -1,0 +1,56 @@
+返回0，创建成功
+返回1，创建失败，原因：文件夹不存在，建议写一段弹出对话框“是否新建文件夹”
+返回2，创建失败，原因：图片名字重名
+
+
+SELECT Create_Link('folderName ','address_','name_',userid_);
+
+SELECT Create_Link('abc','tupian.com','setu',1);
+
+
+
+
+CREATE OR REPLACE FUNCTION Create_Link( folderName varchar,address_ varchar,
+	name_ varchar, userid_ integer) RETURNS integer AS $$
+declare
+ answer integer;
+ rec RECORD;
+ fit boolean;
+ folderid_ integer;
+ 
+BEGIN
+ 
+ answer=0;
+ fit=true;
+ 
+ FOR rec IN SELECT * FROM folder_ 
+ LOOP
+  IF rec.folder_name=folderName
+  THEN
+   folderid_=rec.folder_id;
+   fit=false;
+   answer=0;
+  END IF;
+ END LOOP;
+ IF fit
+ THEN
+  answer=1;
+  return answer;
+ END IF;
+
+ FOR rec IN SELECT * FROM link_ 
+ LOOP
+  IF name_=rec.link_name
+  THEN
+   answer=2;
+   RETURN answer;
+  END IF;
+ END LOOP;
+ 
+
+ INSERT INTO link_ VALUES(default,"address_","name_",userid_,folderid_);
+
+ RETURN answer;
+ 
+END
+$$language plpgsql;

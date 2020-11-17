@@ -1,0 +1,26 @@
+SELECT Create_User("@@user_name@@","@@user_password@@");
+
+CREATE OR REPLACE FUNCTION Create_User( name_ varchar, password_ varchar) RETURNS boolean AS $$
+declare
+ answer boolean;
+ rec RECORD;
+ 
+BEGIN
+ 
+ answer=0;
+ 
+ FOR rec IN SELECT * FROM user_ 
+ LOOP
+  IF rec.user_name=name_
+  THEN
+   answer=false;
+   RETURN answer;
+  END IF;
+ END LOOP;
+ 
+ INSERT INTO user_ VALUES(default,"name_","password_");
+ answer=true;
+ RETURN answer;
+ 
+END
+$$language plpgsql;

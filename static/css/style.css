@@ -1,0 +1,62 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: url(/static/css/重庆夜景1.jpg) no-repeat;
+    width: 100vw;
+    background-size: cover;
+}
+
+.box {  
+    width: 25%;
+    background: rgba(0, 0, 0, .5);
+    margin: 0 auto;
+    margin-top: 5%;
+    text-align: center;
+    color: white;
+}
+
+.box img {
+ 
+    padding-top: 10px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.box h1 {
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.box h5 {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.box p {
+    text-align: justify;
+}
+
+.box ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.box ul li {
+    list-style: none;
+}
+
+.box li a {
+    
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+    transition: all ease-in-out 300ms;
+}
+
+
+.box li a:hover {
+    color: #b9b9b9;
+}

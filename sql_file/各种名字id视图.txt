@@ -1,0 +1,12 @@
+create view all_show as
+ SELECT u.user_id,
+    u.user_name,
+    f.folder_id,
+    f.folder_name,
+    pi.picture_id,
+    pi.picture_name,
+    pi.picture_address
+   FROM user_ u,
+    folder_ f,
+    picture_ pi
+  WHERE u.user_id = f.user_id AND f.folder_id = pi.folder_id;

@@ -1,0 +1,7 @@
+create view all_show as
+select  u.user_id as user_id,u.user_name as user_name,
+		f.folder_id as folder_id,f.folder_name as folder_name,
+		pi.picture_id as picture_id,pi.picture_name as picture_name
+		
+from user_ as u,folder_ as f,picture_ as pi
+where u.folder_id=f.folder_id and f.picture_id=pi.picture_id;

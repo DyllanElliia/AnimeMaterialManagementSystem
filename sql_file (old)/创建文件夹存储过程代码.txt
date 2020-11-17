@@ -1,0 +1,27 @@
+SELECT Create_Folder('name_ ',userid_ );
+
+
+CREATE OR REPLACE FUNCTION Create_Folder( name_ varchar, userid_ integer) RETURNS boolean AS $$
+declare
+ answer boolean;
+ rec RECORD;
+ 
+BEGIN
+ 
+ answer=0;
+ 
+ FOR rec IN SELECT * FROM folder_ 
+ LOOP
+  IF rec.folder_name=name_
+  THEN
+   answer=false;
+   RETURN answer;
+  END IF;
+ END LOOP;
+ 
+ INSERT INTO folder_ VALUES(default,"name_",userid_);
+ answer=true;
+ RETURN answer;
+ 
+END
+$$language plpgsql;

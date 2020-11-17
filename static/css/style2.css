@@ -1,0 +1,111 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: url(/static/css/你电2.png) no-repeat;
+    width: 100vw;
+    background-size: cover;
+}
+
+.box {  
+    width: 50%;
+    background: rgba(80, 80, 80, 0.5);
+    
+    margin-top: 5%;
+    text-align: center;
+    color: white;
+}
+
+.box img {
+ 
+    padding-top: 10px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.box h1 {
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.box h5 {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.box p {
+    text-align: justify;
+}
+
+.box ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.box ul li {
+    list-style: none;
+}
+
+.box li a {
+    
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+    transition: all ease-in-out 300ms;
+}
+
+
+.box li a:hover {
+    color: #b9b9b9;
+}
+
+#login_box {
+    width: 10%;
+    /*宽度*/
+    height: 230px;
+    /*高度*/
+    background: #00000050;
+    /*背景*/
+    margin: auto;
+    /*外边距*/
+    margin-top: 70px;
+    margin-left: 475px;
+    text-align: center;
+    /*文本对齐方式*/
+    border-radius: 30px;
+    /*为元素添加一个圆角边框*/
+    padding: 50px 50px;
+    /*内边距*/
+}
+
+#login_box h2 {
+    color: #ffffff96;
+    margin-top: 10px;
+}
+
+#login_box #form #input_box {
+    margin-top: 10%;
+}
+
+#login_box #form #input_box input {
+    border: 0;
+    width: 60%;
+    font-size: 15px;
+    color: #FFFFFF;
+    background: #FFFFFF00;
+    border-bottom: 2px solid #FFFFFF;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+#login_box #form #submit_box input {
+    background-color: #00000000; 
+    border-bottom: 2px solid #FFFFFF;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;

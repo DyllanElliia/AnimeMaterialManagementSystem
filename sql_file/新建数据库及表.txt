@@ -1,0 +1,40 @@
+create database "setu";
+
+
+CREATE TABLE user_
+(
+	user_id serial PRIMARY KEY,
+	user_name varchar(10) NOT NULL,
+	user_password varchar(20) NOT NULL
+		
+);
+
+
+create table folder_
+(
+	folder_id serial PRIMARY KEY,
+	folder_name varchar(20) NOT NULL,
+	user_id integer NOT NULL,
+	
+	constraint user_id_fk foreign key(user_id)
+	references user_(user_id)
+	on delete cascade
+	
+);
+
+create table picture_
+(
+	picture_id serial PRIMARY KEY,
+	picture_name varchar(100) NOT NULL,
+	picture_address varchar(100) NOT NULL,
+	folder_id integer NOT NULL,
+	
+	constraint folder_id_fk foreign key(folder_id)
+	references folder_(folder_id)
+	on delete cascade
+);
+
+
+
+
+

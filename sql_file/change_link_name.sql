@@ -1,0 +1,1 @@
+SELECT Change_PictureName('@@userName@@','@@keyword@@','@@linkName_old@@', '@@linkName_new@@');

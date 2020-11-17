@@ -1,0 +1,51 @@
+CREATE OR REPLACE FUNCTION Change_Address_FolderName(linkAddress_ varchar,userName_ varchar,
+											 newLinkAddress_ varchar,
+									   newFolderName_ varchar
+	 ) RETURNS boolean AS $$
+declare
+    getLink boolean;
+	getFolder boolean;
+    rec RECORD;
+    linkid_ integer;
+	--folderName_ varchar;
+    --folderid_ integer;
+    userid_ integer;
+	newFolderID integer;
+BEGIN
+    getLink=false;
+	getFolder=false;
+
+    FOR rec IN SELECT * FROM Link_Folder_User 
+    LOOP
+        IF rec.link_address=linkAddress_ and rec.user_name=userName_
+        THEN
+            getLink = true;
+			linkid_=rec.link_id;
+			userid_=rec.user_id;
+			update link_ set link_address=newLinkAddress_ where link_id=linkid_;
+			
+			IF rec.folder_name=newFolderName_
+			THEN
+				getFolder=true;
+				return getFolder;
+			ELSE
+				insert into folder_ values(default,newFolderName_,userid_);
+			END IF;
+			
+        END IF;
+    END LOOP;
+
+    FOR rec IN SELECT * FROM folder_ 
+	LOOP
+    	IF rec.user_id=userid_ and rec.folder_name=newFolderName_
+		THEN 
+			newFolderID=rec.folder_id;
+			update link_ set folder_id=newFolderID where link_id=linkid_;
+			getFolder=true;
+			return getFolder;
+		END IF;
+	END LOOP;
+		
+    return getLink;
+END
+$$language plpgsql;

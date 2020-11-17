@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION Create_User( userName_ varchar, userPassword_ varchar) RETURNS boolean AS $$
+declare
+  userid_ integer;
+BEGIN
+ 
+ select user_id into userid_ from user_ where user_name=userName_;
+ 
+ if userid_ is null
+ then
+ 	INSERT INTO user_ VALUES(default,userName_,userPassword_);
+ 	return true;
+ end if;
+
+ RETURN false;
+ 
+END
+$$language plpgsql;

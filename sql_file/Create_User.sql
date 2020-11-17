@@ -1,0 +1,1 @@
+SELECT Create_User('@@user_name@@','@@user_password@@');
