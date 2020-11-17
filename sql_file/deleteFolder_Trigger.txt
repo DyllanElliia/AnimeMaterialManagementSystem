@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION delete_folder_audit() RETURNS TRIGGER AS $delete_folder_audit$
+ 
+ BEGIN
+	IF(TG_OP='DELETE')THEN
+		
+		DELETE FROM picture_ WHERE folder_id=old.folder_id;
+
+		RETURN OLD;
+	END IF;
+	RETURN NULL;
+ END;
+ $delete_folder_audit$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER deleteFolder_audit_trigger
+AFTER INSERT OR UPDATE OR DELETE ON folder_
+FOR EACH ROW EXECUTE PROCEDURE delete_folder_audit();

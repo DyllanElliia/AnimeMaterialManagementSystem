@@ -1,0 +1,22 @@
+CREATE OR REPLACE FUNCTION Change_PictureName(userName_ varchar,folderName_ varchar,
+									   pictureName_ varchar,newPictureName_ varchar
+	 ) RETURNS boolean AS $$
+declare
+    pictureID_ integer;
+	
+BEGIN
+
+	
+	select picture_id into pictureID_ from all_show
+	where user_name=userName_ and folder_name=folderName_ and picture_name=pictureName_;
+	
+   if pictureID_ is null
+   then 
+   	return false;
+   end if;
+   
+   update picture_ set picture_name=newPictureName_,picture_id=pictureID_ where picture_id=pictureID_;
+         
+    return true;
+END
+$$language plpgsql;

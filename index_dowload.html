@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style type="text/css">
+        .bottom-item {
+            left: 0;
+            position: fixed;
+            bottom: 0;
+            /* top 0 就是顶部 */
+            width: 100%;
+            z-index: 100;
+            background: #343537;
+            display: flex;
+            justify-content: center;
+            color: #ffff;
+        }
+    </style>
+    <title>动漫素材采集系统</title>
+
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src=" https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- 导航栏 -->
+
+        <a class="navbar-brand" href="#">
+            动漫素材采集系统
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/index?USER={{USER_NAME}}">
+                        首页
+                        <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="+">
+                        爬虫搜索
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        在线处理
+                    </a>
+
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" tabindex="-1" aria-disabled="false">
+
+                        素材下载</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link justify-content-center" href="#" tabindex="-1" aria-disabled="false">
+                        可爱的{{USER_NAME}}酱 欢迎使用本系统！
+                    </a>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+        </div>
+    </nav>
+    <br />
+    <!--选择标签 ！！这里可能需要后端渲染-->
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
+
+
+    <br /><br />
+    <ul>
+        <!--中间画布-->>
+        <canvas id="J_Canvas0" width="1800" height="640" style="border:10px solid #000000;border-style: double ">
+        </canvas>
+    </ul>
+
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-1" id="demo">
+            当前已选中：0
+        </div>
+        <div class="col-5">
+            <!-- 管理操作 -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button id="btn_AllSelected" type="button" class="btn btn-secondary">全选</button>
+                <button id="btn_clearSelected" type="button" class="btn btn-secondary">清空</button>
+
+            </div>
+            <button id="btn_delete" type="button" class="btn btn-secondary">删除图片</button>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+                <button id="btn_changeName" type="button" class="btn btn-secondary">修改图片名</button>
+                <button id="btn_changeTag" type="button" class="btn btn-secondary">修改图片标签</button>
+                <button id="btn_onlineMag" type="button" class="btn btn-secondary">在线处理</button>
+
+
+            </div>
+        </div>
+        <div class="col-2">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.354 10.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L6.207 7.5H11a.5.5 0 0 1 0 1H6.207l2.147 2.146z" />
+            </svg>
+
+
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm5.646 10.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z" />
+            </svg>
+        </div>
+
+    </div>
+
+
+    <!-- 底端信息栏 -->
+    <div class="bottom-item">
+
+
+        <div id=”footer”>
+            © WUYIFAN.TOP 版权所有<br /> 　　 最后编辑于2020/5/9
+        </div>
+
+    </div>
+
+</body>
+
+
+
+<script>
+    //安排canvas
+    var ima = new Array();
+    var ima_data = new Array(); //用于存储画布上每张图片的信息
+
+
+    var num = {{NUM_TOTAL | safe}}; //定义当前画布图片总数????
+
+    var c = document.getElementById("J_Canvas0");
+    var cxt = c.getContext("2d");
+    var gap = 10;
+    var unified_height = 200;
+
+
+    //try to make a structure to simplify 
+    function Ima_data(ima, posX, posY) {
+        this.posX = posX;
+        this.posY = posY;
+        this.width = unified_height * ima.width / ima.height;
+        this.height = unified_height;
+        this.isSelct = false;
+    }
+
+
+
+
+    function init_render(ima) {
+        var x = gap;
+        var y = gap;
+        list_src = {{src_list | safe}};
+        for (var i = 1; i <= num; i++) {
+            ima[i] = new Image();
+
+            ima[i].src = list_src[i - 1]; //TO DO
+            console.log(ima[i].src);
+            //ima[i].src = "/static/ima/" + i.toString() + ".jpg";//TO DO
+            //ima[i].src = {{src_list}}[i];//TO DO
+            var k = ima[i].width / ima[i].height;
+
+            if (x + unified_height * k > c.width) {
+                x = gap;
+                y += (unified_height + gap);
+                if (y >= (unified_height + gap) * 3) {
+                    break;
+                }
+            }
+
+            ima_data[i] = new Ima_data(ima[i], x, y);
+
+            x += (unified_height * k + gap);
+        }
+        num = i - 1;
+
+        /*
+        var httpRequest = new XMLHttpRequest(); //第一步：创建需要的对象
+        httpRequest.open('POST', 'dowload', true); //第二步：打开连接
+        httpRequest.setRequestHeader("Content-type",
+        "application/x-www-form-urlencoded"); //设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+        httpRequest.send('num_print=' + num); //发送请求 将情头体写在send中
+        */
+    }
+
+
+    function render_canvas(ima) {
+        cxt.clearRect(0, 0, c.width, c.height);
+        for (var i = 1; i <= num; i++) {
+
+            cxt.drawImage(ima[i], ima_data[i].posX, ima_data[i].posY, ima_data[i].width, ima_data[i].height);
+            if (ima_data[i].isSelct) {
+                cxt.strokeStyle = "#0000ff";
+                cxt.lineWidth = 5;
+                cxt.strokeRect(ima_data[i].posX, ima_data[i].posY, ima_data[i].width, ima_data[i].height);
+                cxt.font = "20px Arial";
+                cxt.lineWidth = 1;
+                cxt.strokeText("Selected", ima_data[i].posX + ima_data[i].width / 4, ima_data[i].posY + ima_data[i]
+                    .height / 2);
+            }
+        }
+    }
+
+
+
+
+
+    window.onload = function() {
+        //在网页完全加载之后再画canvas，以免drawImage方法失效
+        init_render(ima);
+        render_canvas(ima);
+    }
+
+    var selectN = 0;
+    //canvas 的点击事件
+    $("#J_Canvas0").click(function(e) {
+        var x = e.offsetX;
+        var y = e.offsetY;
+        var i = Position_to_Serial(x, y);
+        console.log(x, y, i);
+        if (i > 0) {
+            ima_data[i].isSelct = !(ima_data[i].isSelct);
+
+            if (ima_data[i].isSelct) {
+                selectN++;
+            } else {
+                selectN--;
+            }
+        }
+        document.getElementById("demo").innerHTML = "当前已选中:" + selectN;
+        render_canvas(ima);
+
+
+
+    });
+    //通过坐标 进行查询 返回实际图片序号
+    function Position_to_Serial(x, y) {
+        for (var i = 1; i <= num; i++) {
+            var im = ima_data[i];
+            if (x >= im.posX && x <= im.posX + im.width && y >= im.posY && y <= im.posY + im.height)
+                return i;
+        }
+        return 0;
+    }
+
+    $("#btn_clearSelected").click(function() {
+        for (var i = 1; i <= num; i++) {
+            ima_data[i].isSelct = false;
+        }
+        selectN = 0;
+        document.getElementById("demo").innerHTML = "当前已选中:" + selectN;
+        render_canvas(ima);
+    });
+
+    $("#btn_AllSelected").click(function() {
+        selectN = 0;
+        for (var i = 1; i <= num; i++) {
+            ima_data[i].isSelct = true;
+            selectN++;
+        }
+
+        document.getElementById("demo").innerHTML = "当前已选中:" + selectN;
+        render_canvas(ima);
+    });
+</script>
+
+
+
+</html>

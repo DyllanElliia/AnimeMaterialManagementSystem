@@ -1,0 +1,9 @@
+create view uName_fName_url as
+	select
+		l.link_address  as link_address,
+ 		f.folder_name   as folder_name,
+		u.user_name     as user_name,
+        l.link_id       as link_id
+	from 	 link_ 		as l
+		join folder_	as f on l.folder_id = f.folder_id
+		join user_		as u on l.user_id = u.user_id;

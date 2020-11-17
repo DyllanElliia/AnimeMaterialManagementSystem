@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    {% load static %}
+    <!-- Bootstrap CSS -->
+
+    <link href="/static/css/Newlogin.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <div id="login_box" style="margin: 15% 40%;">
+        <h2> LOGIN </h2>
+        <p style="color:rgb(238, 164, 220)">{{state}}</p>
+        <div id="form">
+            <form method="POST" action="">
+                <div id="input_box">
+                    <input type="text" placeholder="Username" name="USER">
+                </div>
+
+                <div id="input_box">
+                    <input type="password" placeholder="Password" name="PWD">
+                </div>
+
+                <br/>
+                <div id="submit_box">
+                    <input type="submit" value="登录" />
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <a href="/register" style='text-align:center;'>
+        <input type="button" value="注册" style='background-color: #00000000;color: white;padding: 8px 20px;text-align:center;' />
+    </a>
+</body>
+
+</html>

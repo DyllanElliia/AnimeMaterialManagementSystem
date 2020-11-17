@@ -1,0 +1,31 @@
+CREATE OR REPLACE FUNCTION Change_LinkName(userName_ varchar,folderName_ varchar,
+									   linkName_ varchar,newLinkName_ varchar
+	 ) RETURNS boolean AS $$
+declare
+    answer boolean;
+    rec RECORD;
+    linkid_ integer;
+    --folderid_ integer;
+    --userid_ integer;
+ 
+BEGIN
+    answer=false;
+
+    FOR rec IN SELECT * FROM Link_Folder_User 
+    LOOP
+        IF rec.user_name=userName_ and rec.folder_name=folderName_ and rec.link_name=linkName_
+        THEN
+            answer = true;
+			linkid_=rec.link_id;
+        END IF;
+    END LOOP;
+
+    IF answer = true
+    THEN
+        update link_ set link_name=newLinkName_ where link_id=linkid_;
+		return answer;
+    END IF;
+    
+    return answer;
+END
+$$language plpgsql;

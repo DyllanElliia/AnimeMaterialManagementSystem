@@ -1,0 +1,1 @@
+select picture_name from picture_ where picture_address = '@@linkAddress@@';
